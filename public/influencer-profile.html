@@ -1,0 +1,209 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="Script/influencer-profile.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <link rel="stylesheet" href="Style/index.css">
+      <link rel="stylesheet" href="Style/influencer-dash.css">
+</head>
+<body>
+        <center>
+          <div class="h1 mt-5 pt-5 pb-4 page-title">Profile Page</div>
+        </center>
+        
+        <form method="post" enctype="multipart/form-data">
+
+          <div class="row">
+
+            <div class="col-md-8 offset-md-2">
+                <div class="row">
+
+                  <div class="col-md-8">
+                    
+                    <div class="row">
+                     
+                      <div class="col-md-5 offset-md-3">
+                        <label for="inputEmail4" class="form-label mt-5">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                      </div>
+                       
+                      <div class="col-md-4 mt-4 pt-5">
+                        <button type="button" class="btn btn-light button-customized mt-2" disabled id="btnSearch">Fill Saved Details</button>
+                      </div>
+
+                      <div class="col-md-4 mt-5">
+                        <label for="inputName" class="form-label">Name</label>
+                        <input type="text" class="form-control" placeholder="Your Name" id="txtName" name="txtName" required>
+                    </div>
+                      <div class="col-md-4 mt-5">
+                        <label for="inputGender" class="form-label">Gender</label>
+                        <select id="inputGender" class="form-select" name="inputGender">
+                          <option selected value="Female">Female</option>
+                          <option value="Male">Male</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mt-5">
+                        <label for="inputDob" class="form-label">DOB</label>
+                        <input type="date" class="form-control" required id="dateDob" name="dateDob">
+                    </div>
+
+                    <div class="col-md-12 mt-5">
+                        <label  class="form-label">Address</label>
+                        <input type="text" class="form-control" id="txtAdd" required name="txtAdd">
+                      </div>
+                    
+
+                    <div class="col-md-5 mt-4">
+                      <label for="selCity" class="form-label">City</label>
+                      <select id="selCity" class="form-select" name="selCity">
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Greator Noida">Greator Noida</option>
+                        <option value="Ludhiana">Ludhiana</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-5 mt-4">
+                      <label for="inputName" class="form-label">Contact No.</label>
+                      <input type="text" class="form-control" required name="txtMob" id="txtMob">
+                      <span id="spnMob" style="color: red;"></span>
+    
+                  </div>
+
+                  <div class="col-md-4 mt-4">
+                    <label for="inputName" class="form-label">Instagram</label>
+                    <input type="text" class="form-control"  name="txtInsta" id="txtInsta">
+                </div>
+
+                <div class="col-md-4 mt-4">
+                    <label for="inputName" class="form-label">Youtube</label>
+                    <input type="text" class="form-control" name="txtYT" id="txtYT">
+                </div>
+
+                <div class="col-md-4 mt-4">
+                    <label for="inputName" class="form-label">Facebook</label>
+                    <input type="text" class="form-control" name="txtFB" id="txtFB">
+                </div>
+
+                <div class="col-md-12 mt-4">
+                    <label for="floatingTextarea">Other Information</label>
+                    <textarea class="form-control" id="txtOther" rows="5" name="txtOther"></textarea>
+                    
+                </div>
+              </div>
+              </div>
+
+                  <div class="col-md-4">
+                    <div class="row">
+                    <div class="col-md-12">
+                      <center>
+                        <img src="pics/people_14024658.png" width="280" height="280" class="rounded-circle" id="imgPrev">
+                      <input type="hidden" id="hdn" name="hdn">
+                      </center>
+                    </div>
+                          <div class="col-md-12 mt-1">
+                            <label for="formFile" class="form-label">Profile Pic</label>
+                            <input class="form-control" type="file" accept="image/*" id="ppic" name="ppic" onchange="doPrev(ppic,imgPrev)">
+                          </div>
+                          <div class="col-md-10 offset-md-1 mt-5 fixed">
+                            <label for="selField" class="form-label">Your Category (click ctrl and select to choose multiple fields)</label>
+                            <select id="selField" name="selField" class="form-select" multiple size="9" required>
+                              <option value="Dance">Dance</option>
+                              <option value="Music">Music</option>
+                              <option value="Fashion">Fashion</option>
+                              <option value="Singing">Singing</option>
+                              <option value="Modal">Modal</option>
+                              <option value="Lifestyle">Lifestyle</option>
+                              <option value="Health">Health</option>
+                            </select>
+                          </div>
+                        </div>
+                  </div>
+                </div>
+
+                <div class="row"> 
+                    <div class="col-md-1 mt-3 offset-md-5">
+                      <button type="submit" formaction="/inf-profile-process" class="btn btn-light button-customized" id="btnSub">Save</button>
+                    </div>
+                   <div class="col-md-1 mt-3">
+                      <button type="submit" class="btn btn-light button-customized" disabled formaction="/inf-profile-update" id="btnUpd">Update</button>
+                    </div>
+  
+                  </div>
+                </div>
+
+            </div>
+          </div>
+          </form>
+
+
+    <center>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+                <div class="container-fluid shadow">
+                  <img src="" alt="" width="50" height="50">
+                  <a class="navbar-brand ms-3 fs-3" href="#">synerixa.com</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <button type="button" class="btn btn-light button-customized fs-5" id="btnLogOut">Log Out</button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </center>
+    
+
+            <footer class="footer mt-5 py-3" style="background-color: #538392;">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-3 footer-txt-align">
+                          <h5>About Us</h5>
+                          <p>We are dedicated to connecting people and influencers from all over the world. Our platform makes it easy to find the right influencer for your brand, and for influencers to showcase their profiles and connect with potential collaborators. Whether you're looking to promote a product, a cause, or just find like-minded individuals, our website is here to help.</p>
+                      </div>
+                      <div class="col-md-3 px-5">
+                          <h5>Quick Links</h5>
+                          <ul class="list-unstyled">
+                              <li><a href="/index.html">Home</a></li>
+                              <li><a href="/index.html#services">Services</a></li>
+                              <li><a href="/index.html#team">Team</a></li>
+                              <li><a href="/index.html#reachus">Reach Us</a></li>
+                          </ul>
+                      </div>
+                      <div class="col-md-3">
+                          <h5>Follow Us</h5>
+                          <div class="social-icons">
+                              <a href="https://www.instagram.com/bhavika_mittal625/"><i class="fab fa-instagram ms-3 fs-3"></i></a>
+                              <a href="https://www.linkedin.com/in/bhavika-mittal-97a35025b/"><i class="fab fa-linkedin-in ms-3 fs-3"></i></a>
+                          </div>
+                      </div>
+                      <div class="col-md-3 footer-txt-align">
+                          <h5>Contact Us</h5>
+                          <p><b id="eml">Email:</b> bhavikamittal81@gmail.com</p>
+                          <p>We value your feedback! Please send your comments, suggestions, or any issues you encounter to the email address above. Your input helps us improve and provide the best experience for our users.</p>
+                      </div>
+                  </div>
+                  <div class="row mt-3">
+                      <div class="col text-center">
+                          <p>© 2024 Synerixa. Developed by <i>Bhavika Mittal</i>. All rights reserved.</p>
+                      </div>
+                  </div>
+              </div>
+          </footer>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<html>
+
+<head>
+  <title>Infulencer Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <link rel="stylesheet" href="Style/index.css">
+  <script src="Script/influencer-dash.js"></script>
+  <link rel="stylesheet" href="Style/influencer-dash.css">
+
+</head>
+
+<body>
+  <center>
+    <div class="h1 mt-5 pt-5 pb-4 page-title">Influencer Dashboard</div>
+    <span id="wel" class="fs-3 shadow-sm"></span>
+  </center>
+
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <center>
+        <div class="row">
+          <div class="col-md-3 mt-5">
+            <div class="card">
+              <img src="pics/profile.jpg" class="card-img-top" />
+              <div class="card-body">
+                <a href="/influencer-profile" class="btn btn-light button-customized fs-5">Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mt-5">
+            <div class="card">
+              <img src="pics/bookings.jpg" class="card-img-top" />
+              <div class="card-body">
+                <button type="button" class="btn btn-light button-customized fs-5" id="btnBookings" data-bs-toggle="modal"
+                  data-bs-target="#bookingModal">Bookings</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mt-5">
+            <div class="card">
+              <img src="pics/4482352.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <a href="/event-manager" class="btn btn-light button-customized fs-5">Event Manager</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mt-5">
+            <div class="card">
+              <img src="pics/vecteezy_vector-icon-concept-of-gear-that-can-be-used-for-setting-and_22159732.jpg"
+                class="card-img-top" alt="..." />
+
+              <div class="card-body">
+                <center><a href="#" class="btn btn-light button-customized fs-5" data-bs-toggle="modal"
+                    data-bs-target="#settingModal">Settings</a></center>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  </center>
+
+
+  <!-- Settings MODAL -->
+
+  <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Settings</b></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="mb-3">
+              <label for="setEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="setEmail">
+            </div>
+            <div class="mb-3">
+              <label for="oldPwd" class="form-label">Old Password</label>
+              <input type="password" class="form-control" id="oldPwd" name="oldPwd">
+              <span id="spnOld" style="color: red;"></span>
+            </div>
+            <div class="mb-3">
+              <label for="newPwd" class="form-label">New Password</label>
+              <input type="password" class="form-control" id="newPwd" name="newPwd">
+              <span style="color: red;" id="spnNew"></span>
+            </div>
+            <div class="mb-3">
+              <label for="confPwd" class="form-label">Confirm New Password</label>
+              <input type="password" class="form-control" id="confPwd" name="confPwd">
+            </div>
+            <div class="mb-3">
+              <center>
+                <span id="spnFin"></span>
+              </center>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light button-customized" id="dash-btnUpdate">Update Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--#####################################################################################################################-->
+  <!-- BOOKINGS MODAL -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Tell Us About Your Events</b></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="col-md-12">
+              <label for="txtEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="txtEmail">
+            </div>
+            <div class="col-md-12">
+              <label for="txtEvent" class="form-label">Event Title <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" id="txtEvent">
+            </div>
+            <div class="col-md-6">
+              <label for="dateEvent" class="form-label">Date of Event <span style="color: red;">*</span></label>
+              <input type="date" class="form-control" placeholder="DOB" aria-label="DOB" id="dateEvent"
+                name="dateEvent">
+            </div>
+            <div class="col-md-6">
+              <label for="timeEvent" class="form-label">Start Time <span style="color: red;">*</span></label>
+              <input type="time" class="form-control" id="timeEvent" name="timeEvent">
+
+            </div>
+            <div class="col-md-6">
+              <label for="txtCity" class="form-label">City/Place <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" id="txtCity">
+            </div>
+            <div class="col-md-6">
+              <label for="txtVenue" class="form-label">Venue</label>
+              <input type="text" class="form-control" id="txtVenue">
+            </div>
+            <div>
+              <center><span id="bookingStatus" class="fs-5" style="color: red;"></span></center>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light button-customized" id="btnPostBookings">Post Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <center>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid shadow">
+        <img src="" alt="" width="50" height="50">
+        <a class="navbar-brand ms-3 fs-3" href="#">synerixa.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <button type="button" class="btn btn-light button-customized fs-5" id="btnLogOut">Log Out</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </center>
+
+  <footer class="footer mt-5 py-3" style="background-color: #538392;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 footer-txt-align">
+                <h5>About Us</h5>
+                <p>We are dedicated to connecting people and influencers from all over the world. Our platform makes it easy to find the right influencer for your brand, and for influencers to showcase their profiles and connect with potential collaborators. Whether you're looking to promote a product, a cause, or just find like-minded individuals, our website is here to help.</p>
+            </div>
+            <div class="col-md-3 px-5">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html#services">Services</a></li>
+                    <li><a href="/index.html#team">Team</a></li>
+                    <li><a href="/index.html#reachus">Reach Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/bhavika_mittal625/"><i class="fab fa-instagram ms-3 fs-3"></i></a>
+                    <a href="https://www.linkedin.com/in/bhavika-mittal-97a35025b/"><i class="fab fa-linkedin-in ms-3 fs-3"></i></a>
+                </div>
+            </div>
+            <div class="col-md-3 footer-txt-align">
+                <h5>Contact Us</h5>
+                <p><b id="eml">Email:</b> bhavikamittal81@gmail.com</p>
+                <p>We value your feedback! Please send your comments, suggestions, or any issues you encounter to the email address above. Your input helps us improve and provide the best experience for our users.</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <p>© 2024 Synerixa. Developed by <i>Bhavika Mittal</i>. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>

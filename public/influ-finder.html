@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <title>Influencer Finder</title>
+    <script src="Script/influ-finder.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="Style/index.css">
+    <link rel="stylesheet" href="Style/influencer-dash.css">
+
+    <style>
+        a{
+            color: #6295A2;
+        }
+        .footer-a
+        {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body ng-app="myModal" ng-controller="myController" ng-init="getAllInf(); getCity(',');">
+    <center>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="row">
+                    <div class="col-md-4 mt-5 pt-4">
+                        <label class="form-label fs-5"><b>Category</b></label>
+                        <select class="form-select" ng-model="txtField" ng-change="getCity(txtField);">
+                            <option ng-repeat="obj in fields" value="{{obj}}">{{obj}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mt-5 pt-4">
+                        <label class="form-label fs-5"><b>City</b></label>
+                        <select class="form-select" ng-model="selCity" placeholder="sel">
+                            <option ng-repeat="obj in jsonArrayCity" value="{{obj.city}}">{{obj.city}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mt-5 pt-4">
+                        <label class="form-label fs-5"><b>Name</b></label>
+                        <input type="text" class="form-control" ng-model="txtName" placeholder="Name"
+                            aria-label="Field">
+                    </div>
+
+                    <div class="col-md-4 offset-md-4 mt-2 pt-2">
+                        <button type="button" class="btn btn-light button-customized fs-5" ng-click="getInf();">Find
+                            Influencers</button>
+                    </div>
+                    <hr class="mt-2">
+
+                    <div class="h1 page-title">Influencers</div>
+
+                    <div class="col-md-4 mt-3" ng-repeat="obj in jsonArrayAll">
+
+                        <div class="card mb-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="uploads/{{obj.picpath}}" class="card-img-top rounded-3 w-100">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body">
+                                                <p class="card-title"><b><i>{{obj.iname}}</i></b></p>
+                                                <p class="card-title">{{obj.gender}}</p>
+
+                                                <div class="col-md-12">
+                                                    <a href="{{obj.insta}}" ng-hide="{{!obj.insta}}"><img
+                                                            src="pics/instagram_2111463.png" class="rounded-circle me-1"
+                                                            width="30" height="30"></a>
+                                                    <a href="{{obj.yt}}" ng-hide="{{!obj.yt}}"><img
+                                                            src="pics/youtube_2504965.png" class="rounded-circle me-1"
+                                                            width="30" height="30"></a>
+                                                    <a href="{{obj.fb}}" ng-hide="{{obj.fb}}"><img
+                                                            src="pics/facebook_2504903.png" class="rounded-circle me-1"
+                                                            width="30" height="30"></a>
+                                                </div>
+            
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 pe-3">
+                                            <button type="button" class="btn btn-light button-customized"
+                                        data-bs-toggle="modal" data-bs-target="#infModal"
+                                        ng-click="showInf($index);">More Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </center>
+
+    <!----MODAL MODAL MODAL MODAL -->
+
+    <div class="modal fade" id="infModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Influencer Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="carouselExampleFade" class="carousel slide carousel-dark">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active fs-5">
+                                <div class="d-flex justify-content-start">
+
+                                    <div class="d-flex justify-content-start">
+                                        <img src="uploads/{{fullDetails.picpath}}" class="img-fluid rounded-4">
+                                   </div>
+
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <div class="justify-content-center align-items-center">
+                                            <p>
+                                                <b>
+                                                    Name:
+                                                </b>
+                                            </p>
+                                            <p>
+                                                <b>
+                                                    D.O.B:
+                                                </b>
+                                            </p>
+                                            <p>
+                                                <b>
+                                                    Email:
+                                                </b>
+                                            </p>
+                                            <p>
+                                                <b>
+                                                    Fields:
+                                                </b>
+                                            </p>
+                                            <p>
+                                                <b>
+                                                    Phone: 
+                                                </b>
+                                            </p>
+                                            <p>
+                                                <b>
+                                                    City:
+                                                </b>
+                                            </p>
+                                        </div>
+                                        <div class="justify-content-center align-items-center" style="font-weight: normal;">
+                                            <p>
+                                                {{fullDetails.iname}}
+                                            </p>
+                                            <p>
+                                                {{fullDetails.dob}}
+                                            </p>
+                                            <p>
+                                                {{fullDetails.email}}
+                                            </p>
+                                            <p>
+                                                {{(fullDetails.field).substring(0, fullDetails.field.length-1)}}
+                                            </p>
+                                            <p>
+                                                {{fullDetails.mob}}
+                                            </p>
+                                            <p>
+                                                {{fullDetails.city}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="carousel-item ">
+                                <div class="row">
+
+                                    <center>
+                                        <p class="h3">Upcoming Events</p>
+                                    </center>
+
+                                </div>
+                                <div class="container">
+                                    <table class="table mt-5 table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Sr. No.</th>
+                                                <th scope="col">Event Name</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Time</th>
+                                                <th scope="col">City</th>
+                                                <th scope="col">Venue</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="obj in jsonUpcomingEvents">
+                                                <th scope="row">{{$index+1}}</th>
+                                                <td>{{obj.ievents}}</td>
+                                                <td>{{obj.doe}}</td>
+                                                <td>{{obj.tos}}</td>
+                                                <td>{{obj.city}}</td>
+                                                <td>{{obj.venue}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="carousel-item ">
+                                <div class="row">
+
+                                    <center>
+                                        <p class="h3">Previous Events</p>
+                                    </center>
+
+                                </div>
+                                <div class="container">
+                                    <table class="table mt-5 table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Sr. No.</th>
+                                                <th scope="col">Event Name</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Time</th>
+                                                <th scope="col">City</th>
+                                                <th scope="col">Venue</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="obj in jsonPrevEvents">
+                                                <th scope="row">{{$index+1}}</th>
+                                                <td>{{obj.ievents}}</td>
+                                                <td>{{obj.doe}}</td>
+                                                <td>{{obj.tos}}</td>
+                                                <td>{{obj.city}}</td>
+                                                <td>{{obj.venue}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <a href="{{fullDetails.insta}}" ng-hide=!fullDetails.insta style="text-decoration: none;"><img
+                            src="pics/instagram_2111463.png" class="rounded-circle  me-2 ms-3" width="40"
+                            height="40">Instagram Handle</a>
+                    <a href="{{fullDetails.yt}}" ng-hide="!fullDetails.yt" style="text-decoration: none;"><img
+                            src="pics/youtube_2504965.png" class="rounded-circle me-2 ms-3" width="40"
+                            height="40">Youtube Channel</a>
+                    <a href="{{fullDetails.fb}}" ng-hide=!fullDetails.fb style="text-decoration: none;"><img
+                            src="pics/facebook_2504903.png" class="rounded-circle me-2 ms-3" width="40"
+                            height="40">Facebook Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <center>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div class="container-fluid shadow">
+                <img src="" alt="" width="50" height="50">
+                <a class="navbar-brand ms-3 fs-3" href="#">synerixa.com</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-light button-customized fs-5">Log Out</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </center>
+
+    <footer class="footer mt-5 py-3" style="background-color: #538392;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-txt-align">
+                    <h5>About Us</h5>
+                    <p>We are dedicated to connecting people and influencers from all over the world. Our platform makes it easy to find the right influencer for your brand, and for influencers to showcase their profiles and connect with potential collaborators. Whether you're looking to promote a product, a cause, or just find like-minded individuals, our website is here to help.</p>
+                </div>
+                <div class="col-md-3 px-5">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/index.html" class="footer-a">Home</a></li>
+                        <li><a href="/index.html#services" class="footer-a">Services</a></li>
+                        <li><a href="/index.html#team" class="footer-a">Team</a></li>
+                        <li><a href="/index.html#reachus" class="footer-a">Reach Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/bhavika_mittal625/" class="footer-a"><i class="fab fa-instagram ms-3 fs-3"></i></a>
+                        <a href="https://www.linkedin.com/in/bhavika-mittal-97a35025b/" class="footer-a"><i class="fab fa-linkedin-in ms-3 fs-3"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 footer-txt-align">
+                    <h5>Contact Us</h5>
+                    <p><b id="eml">Email:</b> bhavikamittal81@gmail.com</p>
+                    <p>We value your feedback! Please send your comments, suggestions, or any issues you encounter to the email address above. Your input helps us improve and provide the best experience for our users.</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <p>© 2024 Synerixa. Developed by <i>Bhavika Mittal</i>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

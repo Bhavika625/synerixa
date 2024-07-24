@@ -1,0 +1,68 @@
+body
+{
+    background-color:#f8faf8;
+    color: #1A2130;
+    font-family:"Montserrat", sans-serif;
+}
+.navbar, .modal
+{   
+    font-family:"Montserrat", sans-serif;
+    font-weight: bold;
+}
+.h2{
+    font-family: "Lucida Handwriting";
+    color:#538392;
+}
+
+.h2:hover{
+    color: #6295A2;
+}
+.card-border
+{
+    border: none;
+    background-color: inherit;
+}
+label,.modal-title
+{
+    color: #538392;
+    font-weight: bold;
+}
+.button-customized{
+    background-color: #538392;
+    color: #FFFFFF;
+    transition: ease all .5s;
+}
+.button-customized:hover {
+    background-color: #6295A2;
+    color: #FFFFFF;
+}
+.button-customized:active{
+    transform: translate(2px,2px);
+    transition: ease all .2s;
+}
+
+.button-customized:disabled{
+    background-color: #6295A2;
+    color: #FFFFFF;
+}
+
+input[type="email"], input[type="text"], input[type="password"]
+{
+    color: #010817;
+    font-family:"Montserrat", sans-serif;
+    /* font-weight : bold; */
+}
+a, .footer
+{
+    text-decoration: none;
+    color: white;
+}
+.footer-txt-align
+{
+    text-align: justify;
+}
+h5, #eml
+{
+    color: #010817;
+    font-weight: bold;
+}
