@@ -166,7 +166,7 @@ app.post("/inf-profile-process", function (req, resp) {
         str = ary;
 
 
-    mysql.query("insert into IProfile values(?,?,?,?,?,?,?,?,?,?,?,?,?)", [email, name, gender, dob, add, city, mob, insta, yt, fb, other, str, fileName], function (err) {
+    mysql.query("insert into iprofile values(?,?,?,?,?,?,?,?,?,?,?,?,?)", [email, name, gender, dob, add, city, mob, insta, yt, fb, other, str, fileName], function (err) {
         if (err)
             resp.send(err.message);
         else
