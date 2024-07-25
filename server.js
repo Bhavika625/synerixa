@@ -29,7 +29,7 @@ let config = {
     database: "bg7vihwvs6s6azaxd1xs",
     dateStrings : true,
     keepAliveInitialDelay: 10000,
-    enableKeepAlive: true
+    enableKeepAlive: true,
 }
 
 let mysql = mysql2.createConnection(config);
