@@ -38,8 +38,19 @@
 
                     function allIsWell(response)
                     {
-                        //alert(JSON.stringify(response.data)) ;
+                        // alert(JSON.stringify(response.data)) ;
                         $scope.jsonAllEvents=response.data;
+                        var len = $scope.jsonAllEvents.length;
+
+                        // alert(len);
+
+                        for(var i=0; i<len; i++)
+                        {
+                          // alert($scope.jsonAllEvents[i].doe);
+                          let date = new Date($scope.jsonAllEvents[i].doe);
+                          $scope.jsonAllEvents[i].doe = date.toLocaleDateString();
+                        }
+
                     }
                     function notWell(err)
                     {
@@ -129,7 +140,7 @@
                 </nav>
               </center>
 
-              <footer class="footer mt-5 py-3 position-absolute end-0 start-0" style="background-color: #538392;">
+              <footer class="footer mt-5 py-3" style="background-color: #538392;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 footer-txt-align">

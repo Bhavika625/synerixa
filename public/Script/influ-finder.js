@@ -33,6 +33,16 @@ let controller = module.controller("myController", function ($scope, $http) {
         function allIsWell(response) {
             // alert(JSON.stringify(response.data)) ;
             $scope.jsonArrayAll = response.data;
+            var len = $scope.jsonArrayAll.length;
+
+                        // alert(len);
+
+                        for(var i=0; i<len; i++)
+                        {
+                        //   alert($scope.jsonAllEvents[i].doe);
+                          let date = new Date($scope.jsonArrayAll[i].dob);
+                          $scope.jsonArrayAll[i].dob = date.toLocaleDateString();
+                        }
         }
         function notWell(err) {
             alert(err)
@@ -78,6 +88,16 @@ let controller = module.controller("myController", function ($scope, $http) {
         function allIsWell(response) {
             // alert(JSON.stringify(response.data)) ;
             $scope.jsonArrayAll = response.data;
+            var len = $scope.jsonArrayAll.length;
+
+                        // alert(len);
+
+                        for(var i=0; i<len; i++)
+                        {
+                          // alert($scope.jsonAllEvents[i].doe);
+                          let date = new Date($scope.jsonArrayAll[i].dob);
+                          $scope.jsonArrayAll[i].dob = date.toLocaleDateString();
+                        }
         }
         function notWell(err) {
             alert(err)
@@ -97,6 +117,16 @@ let controller = module.controller("myController", function ($scope, $http) {
         function allIsWell(response) {
             // alert(JSON.stringify(response)) ;
             $scope.jsonPrevEvents = response.data;
+            var len = $scope.jsonPrevEvents.length;
+
+                        // alert(len);
+
+                        for(var i=0; i<len; i++)
+                        {
+                          // alert($scope.jsonAllEvents[i].doe);
+                          let date = new Date($scope.jsonPrevEvents[i].doe);
+                          $scope.jsonPrevEvents[i].doe = date.toLocaleDateString();
+                        }
         }
         function notWell(err) {
             alert(err)
@@ -109,6 +139,16 @@ let controller = module.controller("myController", function ($scope, $http) {
         function allIsWell(response) {
             // alert(JSON.stringify(response)) ;
             $scope.jsonUpcomingEvents = response.data;
+            var len = $scope.jsonUpcomingEvents.length;
+
+                        // alert(len);
+
+                        for(var i=0; i<len; i++)
+                        {
+                          // alert($scope.jsonAllEvents[i].doe);
+                          let date = new Date($scope.jsonUpcomingEvents[i].doe);
+                          $scope.jsonUpcomingEvents[i].doe = date.toLocaleDateString();
+                        }
         }
         function notWell(err) {
             alert(err)

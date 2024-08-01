@@ -65,10 +65,20 @@ $(document).ready(function(){
         }
         $.ajax(obj).done(function(jsonAry)
         {
-            //alert(JSON.stringify(jsonAry));
+            // alert(JSON.stringify(jsonAry));
+            let date = new Date(jsonAry[0].dob);
+            // alert(date);
+            date = date.toLocaleDateString().split("/");
+            if(date[1] < 10)
+                date[1] = "0"+date[1];
+            if(date[2] < 10)
+                date[2] = "0"+date[2];
+            
+            // alert(date[2]+"-"+date[1]+"-"+date[0]);
+            // alert(JSON.stringify(date.toLocaleDateString()).split("/"));
             $("#txtName").val(jsonAry[0].iname);
-            $("#dateDob").val(jsonAry[0].dob);
-            $("#imgPrev").prop("src","uploads/"+jsonAry[0].picpath);
+            $("#dateDob").val(date[2]+"-"+date[1]+"-"+date[0]);
+            $("#imgPrev").prop("src",jsonAry[0].picpath);
             $("#hdn").val(jsonAry[0].picpath);
             $("#inputGender").val(jsonAry[0].gender);
             $("#txtAdd").val(jsonAry[0].address);

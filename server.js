@@ -2,6 +2,7 @@ let express = require("express");
 let mysql2 = require("mysql2");
 let fileuploader = require("express-fileupload");
 const nodemailer = require('nodemailer');
+let cloudinary = require("cloudinary");
 
 let app = express();
 
@@ -22,15 +23,24 @@ app.listen("2005", function () {
 //     dateStrings : true,
 // }
 
-let config = {
-    host: "bg7vihwvs6s6azaxd1xs-mysql.services.clever-cloud.com",
-    user: "uxvfxcbpwelegspj",
-    password: "PLwsPo5Opug9u59sQKHs",
-    database: "bg7vihwvs6s6azaxd1xs",
-    dateStrings : true,
-    keepAliveInitialDelay: 10000,
-    enableKeepAlive: true,
-}
+// let config = {
+//     host: "bg7vihwvs6s6azaxd1xs-mysql.services.clever-cloud.com",
+//     user: "uxvfxcbpwelegspj",
+//     password: "PLwsPo5Opug9u59sQKHs",
+//     database: "bg7vihwvs6s6azaxd1xs",
+//     dateStrings : true,
+//     keepAliveInitialDelay: 10000,
+//     enableKeepAlive: true,
+// }
+
+
+cloudinary.config({ 
+    cloud_name: 'dgjawollj', 
+    api_key: '835924956446493', 
+    api_secret: 'RbFiZXxcS5pHHygp01n6WSDXZhU'
+});
+
+let config = "mysql://avnadmin:AVNS_txtlmC5ZlvlH9y1S3vE@mysql-35803cfc-mittalbhavika094-e2a8.i.aivencloud.com:15513/defaultdb"
 
 let mysql = mysql2.createConnection(config);
 
@@ -40,6 +50,13 @@ mysql.connect(function (err) {
     else
         console.log("Database Connection is Successful.");
 })
+
+app.get("/admin-dashboard",function(req,resp)
+{
+    let path = __dirname + "/public/admin-dash.html";
+
+    resp.sendFile(path);
+});
 
 
 app.get("/", function (req, resp) {
@@ -127,14 +144,21 @@ app.get("/influencer-profile", function (req, resp) {
 
 });
 
-app.post("/inf-profile-process", function (req, resp) {
+app.post("/inf-profile-process", async function (req, resp) {
 
     let fileName = "";
 
     if (req.files != null) {
         fileName = req.files.ppic.name;
         let path = __dirname + "/public/uploads/" + fileName;
-        req.files.ppic.mv(path);
+        // req.files.ppic.mv(path);
+
+       await cloudinary.uploader.upload(path).then(function(result){
+
+            fileName = result.url;
+
+        });
+
     }
     else
         fileName = "nopic";
