@@ -15,7 +15,7 @@ Built with **Node.js**, **MySQL**, and **Bootstrap** for responsive design.
 
 ## 🛠️ Tech Stack
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap  
-- **Backend**: Node.js, Express.js  
+- **Backend**: Node.js
 - **Database**: MySQL  
 
 ---
