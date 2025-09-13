@@ -21,4 +21,4 @@ Built with **Node.js**, **MySQL**, and **Bootstrap** for responsive design.
 ---
 
 ## 📸 Demo
-[![Watch Demo](https://drive.google.com/file/d/1P-sSFvBMgKpivFJbbycbeWKArV64vxXF/view?usp=sharing)]
+[[Watch Demo](https://drive.google.com/file/d/1P-sSFvBMgKpivFJbbycbeWKArV64vxXF/view?usp=sharing)]
